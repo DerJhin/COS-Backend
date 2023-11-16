@@ -5,10 +5,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "skins")
 @Getter
 @Setter
+@IdClass(SkinId.class)
 public class Skin {
 
     @Id
@@ -17,28 +20,10 @@ public class Skin {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "itemName")
+    @JoinColumn(name = "item_name")
     private Item item;
 
     @Column(name = "rarity")
     private String rarity;
-
-    @Column(name = "floatNumber")
-    private double floatNumber;
-
-    @Column(name = "floatString")
-    private double floatString;
-
-    @Column(name = "hasPattern")
-    private boolean hasPattern;
-
-    @Column(name = "patternNumber")
-    private int patternNumber;
-
-    @Column(name = "isStatTrak")
-    private boolean isStatTrak;
-
 }
-
-
 

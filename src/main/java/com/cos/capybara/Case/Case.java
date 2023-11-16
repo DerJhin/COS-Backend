@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Table(name = "cases")
@@ -21,16 +22,20 @@ public class Case {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "caseSkin")
-    private List<Skin> skins;
+    @JoinTable(
+            name = "case_skins",
+            joinColumns = @JoinColumn(name = "case_name"),
+            inverseJoinColumns = @JoinColumn(name = "skin_name", referencedColumnName = "name")
+    )
+    private Set<Skin> skins;
 
-    @Column(name = "Probability")
+    @Column(name = "probability")
     @ElementCollection
     @MapKeyColumn(name = "rarity")
     private Map<String, Double> probability;
 
 
-    public Case(String name, List<Skin> skins) {
+    public Case(String name, Set<Skin> skins) {
         this.name = name;
         this.skins = skins;
         this.probability = createProbability();
@@ -49,7 +54,7 @@ public class Case {
         return probability;
     }
 
-    private double createProbability(List<Skin> skins, String name, double probability) {
+    private double createProbability(Set<Skin> skins, String name, double probability) {
         double count = 0;
         for(Skin skin : skins) {
             if(skin.getRarity().equals(name)) {
