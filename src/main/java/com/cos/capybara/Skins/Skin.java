@@ -1,11 +1,9 @@
 package com.cos.capybara.Skins;
 
-import com.cos.capybara.Items.Item;
+import com.cos.capybara.Weapons.Weapon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "skins")
@@ -20,8 +18,8 @@ public class Skin {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "item_name")
-    private Item item;
+    @JoinColumn(name = "weapon_name")
+    private Weapon weapon;
 
     @Column(name = "rarity")
     private String rarity;

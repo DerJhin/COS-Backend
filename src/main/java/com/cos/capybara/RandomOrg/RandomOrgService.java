@@ -22,7 +22,7 @@ public class RandomOrgService {
         this.restTemplate = restTemplate;
     }
 
-    public double generateRandomInteger() {
+    public double generateDecimalFractionsForRandomSkin() {
         String url = "https://api.random.org/json-rpc/4/invoke";
 
         HttpHeaders headers = new HttpHeaders();
@@ -31,7 +31,7 @@ public class RandomOrgService {
         Map<String, Object> params = new HashMap<>();
         params.put("apiKey", "52ba3ac9-3c6e-42c0-911e-5fc4ff53d904");
         params.put("n", 1);
-        params.put("decimalPlaces", 8);
+        params.put("decimalPlaces", 5);
         params.put("replacement", true);
 
         Map<String, Object> requestBody = new HashMap<>();

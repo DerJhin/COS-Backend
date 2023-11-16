@@ -1,4 +1,4 @@
-package com.cos.capybara.Items;
+package com.cos.capybara.Case;
 
 import com.cos.capybara.Skins.Skin;
 import jakarta.persistence.*;
@@ -8,14 +8,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "items")
-public class Item {
-
+@Table(name = "case_skins")
+public class CaseSkin {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "case_name")
+    private Case weaponCase;
 
     @ManyToOne
     @JoinColumns({
@@ -24,19 +27,13 @@ public class Item {
     })
     private Skin skin;
 
-    @Column(name = "float_value")
-    private double floatValue;
+    @Column(name = "probability")
+    private Double probability;
 
-    @Column(name = "float_string")
-    private String floatString;
-
-    @Column(name = "is_stat_trak")
-    private boolean isStatTrak;
-
-    @Column(name = "has_pattern")
-    private boolean hasPattern;
-
-    @Column(name = "pattern_number")
-    private int patternNumber;
-
+    public CaseSkin(Skin skin, double probability){
+        this.skin = skin;
+        this.probability = probability;
+    }
+    public CaseSkin() {
+    }
 }

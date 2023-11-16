@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface DefaultRandomService {
 
-    public double getRandomSkin();
+    public Skin getRandomSkin(Case weaponCase);
 
 }

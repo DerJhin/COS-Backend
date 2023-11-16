@@ -5,10 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "cases")
@@ -21,30 +18,27 @@ public class Case {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "case_skins",
-            joinColumns = @JoinColumn(name = "case_name"),
-            inverseJoinColumns = @JoinColumn(name = "skin_name", referencedColumnName = "name")
-    )
-    private Set<Skin> skins;
+    @OneToMany(mappedBy = "weaponCase")
+    private List<CaseSkin> caseSkins;
 
-    @Column(name = "probability")
-    @ElementCollection
-    @MapKeyColumn(name = "rarity")
-    private Map<String, Double> probability;
-
-
-    public Case(String name, Set<Skin> skins) {
+    public Case(String name, List<Skin> skins) {
         this.name = name;
-        this.skins = skins;
-        this.probability = createProbability();
+        this.caseSkins = createCaseSkins(skins);
     }
 
     public Case() {
     }
 
-    private Map<String, Double> createProbability() {
+    private List<CaseSkin> createCaseSkins(List<Skin> skins){
+        Map<String, Double> probability = createProbability(skins);
+        List<CaseSkin> caseSkin = new ArrayList<CaseSkin>();
+        for(Skin toMathSkin : skins){
+            caseSkin.add(new CaseSkin(toMathSkin, probability.get(toMathSkin.getRarity())));
+        }
+        return caseSkin;
+    }
+
+    private Map<String, Double> createProbability(List<Skin> skins) {
         Map<String, Double> probability = new HashMap<>();
         probability.put("gold", createProbability(skins, "gold", 0.0026));
         probability.put("red", createProbability(skins, "red", 0.0064));
@@ -54,7 +48,7 @@ public class Case {
         return probability;
     }
 
-    private double createProbability(Set<Skin> skins, String name, double probability) {
+    private double createProbability(List<Skin> skins, String name, double probability) {
         double count = 0;
         for(Skin skin : skins) {
             if(skin.getRarity().equals(name)) {
