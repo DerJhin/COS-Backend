@@ -6,6 +6,7 @@ CREATE TABLE weapons (
 CREATE TABLE skins (
     name VARCHAR(255),
     weapon_name VARCHAR(255) REFERENCES weapons(name),
+    has_pattern NUMBER(1),
     rarity VARCHAR(50),
     PRIMARY KEY (name, weapon_name)
 );
@@ -33,11 +34,11 @@ INSERT INTO weapons (name) VALUES
 ('Karambit');
 
 -- Inserting test data into the 'skins' table
-INSERT INTO skins (name, weapon_name, rarity) VALUES
-('Temukau', 'M4A4', 'red'),
-('Slate', 'AK-47', 'purple'),
-('Duality', 'AWP', 'pink'),
-('Case Hardened', 'Karambit', 'gold');
+INSERT INTO skins (name, weapon_name, has_pattern, rarity) VALUES
+('Temukau', 'M4A4', 0, 'red'),
+('Slate', 'AK-47', 0, 'purple'),
+('Duality', 'AWP', 0, 'pink'),
+('Case Hardened', 'Karambit', 1, 'gold');
 
 -- Insert test data into the 'cases' table
 INSERT INTO cases (name) VALUES

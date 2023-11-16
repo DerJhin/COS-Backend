@@ -8,7 +8,4 @@ public class SkinId implements Serializable {
 
     private String name;
     private Weapon weapon;
-
-    // constructors, equals, hashCode...
-
 }

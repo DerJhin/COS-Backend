@@ -11,6 +11,7 @@ import lombok.Setter;
 @Table(name = "items")
 public class Item {
 
+    //TODO@JSE: Need to add Inventory Field
 
     @Id
     @Column(name = "id")
@@ -33,10 +34,13 @@ public class Item {
     @Column(name = "is_stat_trak")
     private boolean isStatTrak;
 
-    @Column(name = "has_pattern")
-    private boolean hasPattern;
-
     @Column(name = "pattern_number")
     private int patternNumber;
 
+    public Item(Skin skin){
+        this.skin = skin;
+    }
+
+    public Item() {
+    }
 }

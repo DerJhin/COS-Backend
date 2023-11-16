@@ -1,7 +1,9 @@
 package com.cos.capybara.Case;
 
+import com.cos.capybara.Items.Item;
 import com.cos.capybara.Random.RandomService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/case")
@@ -16,9 +18,8 @@ public class CaseController {
         this.caseService = caseService;
     }
 
-    @GetMapping("/openCase")
-    public String openCase() {
-        Case weaponCase = caseService.getCase("TestCase");
-        return randomService.getRandomSkin(weaponCase).getName();
+    @GetMapping("/openCase/{caseName}")
+    public Item openCase(@PathVariable String caseName) {
+        return caseService.openCase(caseName);
     }
 }

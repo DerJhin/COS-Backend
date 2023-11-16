@@ -21,6 +21,9 @@ public class Skin {
     @JoinColumn(name = "weapon_name")
     private Weapon weapon;
 
+    @Column(name = "has_pattern")
+    private boolean hasPattern;
+
     @Column(name = "rarity")
     private String rarity;
 }
