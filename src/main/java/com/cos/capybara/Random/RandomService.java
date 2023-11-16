@@ -1,7 +1,7 @@
 package com.cos.capybara.Random;
 
 import com.cos.capybara.Case.Case;
-import com.cos.capybara.Case.CaseSkin;
+import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.RandomOrg.RandomOrgService;
 import com.cos.capybara.Skins.Skin;
 import org.springframework.stereotype.Service;

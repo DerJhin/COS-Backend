@@ -1,6 +1,8 @@
 package com.cos.capybara.Case;
 
+import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.Skins.Skin;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,7 @@ public class Case {
     private String name;
 
     @OneToMany(mappedBy = "weaponCase")
+    @JsonManagedReference
     private List<CaseSkin> caseSkins;
 
     public Case(String name, List<Skin> skins) {

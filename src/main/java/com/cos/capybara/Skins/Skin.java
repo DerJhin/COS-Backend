@@ -1,6 +1,7 @@
 package com.cos.capybara.Skins;
 
 import com.cos.capybara.Weapons.Weapon;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Skin {
     @Id
     @ManyToOne
     @JoinColumn(name = "weapon_name")
+    @JsonBackReference
     private Weapon weapon;
 
     @Column(name = "has_pattern")
