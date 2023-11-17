@@ -3,10 +3,8 @@ package com.cos.capybara.Case;
 import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.Items.Item;
 import com.cos.capybara.Random.RandomService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.cos.capybara.Skins.Skin;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,5 +32,10 @@ public class CaseController {
         Collection<CaseSkin> caseSkins = caseService.getSkinsOfCase(caseName);
         System.out.println(caseSkins.size());
         return caseSkins;
+    }
+
+    @PostMapping("/createCase")
+    public Case createCase(@RequestBody List<Skin> skins , @RequestBody String caseName) {
+        return caseService.createCase(skins, caseName);
     }
 }

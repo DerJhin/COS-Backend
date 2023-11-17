@@ -17,13 +17,11 @@ public class Item {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "skin_name", referencedColumnName = "name"),
-            @JoinColumn(name = "skin_weapon_name", referencedColumnName = "weapon_name")
-    })
+    @JoinColumn(name = "skin_id")
+    @JsonBackReference
     private Skin skin;
 
     @Column(name = "float_value")

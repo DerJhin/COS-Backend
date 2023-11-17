@@ -22,4 +22,8 @@ public class CaseSkinService {
         System.out.println(caseSkinRepository.getCaseSkinsByWeaponCaseEquals(weaponCase));
         return caseSkinRepository.getCaseSkinsByWeaponCaseEquals(weaponCase).orElseThrow(() -> new EntityNotFoundException("No Skins found"));
     }
+
+    public void saveAll(List<CaseSkin> caseSkins){
+        caseSkinRepository.saveAll(caseSkins);
+    }
 }

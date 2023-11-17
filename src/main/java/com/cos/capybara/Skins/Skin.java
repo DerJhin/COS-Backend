@@ -10,14 +10,16 @@ import lombok.Setter;
 @Table(name = "skins")
 @Getter
 @Setter
-@IdClass(SkinId.class)
 public class Skin {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(name = "name")
     private String name;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "weapon_name")
     @JsonBackReference

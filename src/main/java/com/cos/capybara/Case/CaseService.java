@@ -5,10 +5,10 @@ import com.cos.capybara.CaseSkin.CaseSkinService;
 import com.cos.capybara.Items.Item;
 import com.cos.capybara.Items.ItemService;
 import com.cos.capybara.Random.RandomService;
+import com.cos.capybara.Skins.Skin;
 import com.cos.capybara.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,5 +42,14 @@ public class CaseService implements DefaultCaseService {
     public Collection<CaseSkin> getSkinsOfCase(String caseName){
         Case weaponCase = getCase(caseName);
         return caseSkinService.findByWeaponCase(weaponCase);
+    }
+
+    public Case createCase(List<Skin> skins, String caseName){
+        Case caseToCreate = new Case(caseName, skins);
+        return CaseRepository.save(caseToCreate);
+    }
+
+    public void save(Case weaponCase){
+        CaseRepository.save(weaponCase);
     }
 }

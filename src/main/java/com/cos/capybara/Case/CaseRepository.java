@@ -11,4 +11,5 @@ public interface CaseRepository extends JpaRepository<Case, String> {
     boolean existsByName(String name);
 
     Optional<Case> findByName(String name);
+
 }
