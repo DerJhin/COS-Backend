@@ -14,9 +14,9 @@ import lombok.Setter;
 public class CaseSkin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "case_name")
@@ -24,10 +24,7 @@ public class CaseSkin {
     private Case weaponCase;
 
     @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "skin_name", referencedColumnName = "name"),
-            @JoinColumn(name = "skin_weapon_name", referencedColumnName = "weapon_name")
-    })
+    @JoinColumn(name = "skin_id")
     private Skin skin;
 
     @Column(name = "probability")

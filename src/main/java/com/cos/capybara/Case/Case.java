@@ -33,11 +33,11 @@ public class Case {
 
     private List<CaseSkin> createCaseSkins(List<Skin> skins){
         Map<String, Double> probability = createProbability(skins);
-        List<CaseSkin> caseSkin = new ArrayList<CaseSkin>();
+        List<CaseSkin> caseSkins = new ArrayList<CaseSkin>();
         for(Skin toMathSkin : skins){
-            caseSkin.add(new CaseSkin(toMathSkin, probability.get(toMathSkin.getRarity())));
+            caseSkins.add(new CaseSkin(toMathSkin, probability.get(toMathSkin.getRarity())));
         }
-        return caseSkin;
+        return caseSkins;
     }
 
     private Map<String, Double> createProbability(List<Skin> skins) {
