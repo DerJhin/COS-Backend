@@ -4,7 +4,9 @@ import com.cos.capybara.Case.Case;
 import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.RandomOrg.RandomOrgService;
 import com.cos.capybara.Skins.Skin;
+import org.springframework.data.repository.query.ParameterOutOfBoundsException;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.ranges.RangeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +20,15 @@ public class RandomService implements DefaultRandomService{
         this.randomOrgService = randomOrgService;
     }
 
-    public Skin getRandomSkin(Case weaponCase) {
+    public Skin getRandomSkin(Case weaponCase){
         double randomDouble = randomOrgService.generateDecimalFractionsForRandomSkin();
-        List<Double> cumulativeProbabilities = new ArrayList<>();
         double cumulativeProbability = 0;
         for (CaseSkin skin : weaponCase.getCaseSkins()) {
             cumulativeProbability += skin.getProbability();
-            cumulativeProbabilities.add(cumulativeProbability);
+            if (cumulativeProbability >= randomDouble) {
+                return skin.getSkin();
+            };
         }
-        int selectedIndex = -1;
-        for (int i = 0; i < cumulativeProbabilities.size(); i++) {
-            if (cumulativeProbabilities.get(i) >= randomDouble) {
-                selectedIndex = i;
-                break;
-            }
-        }
-        return weaponCase.getCaseSkins().get(selectedIndex).getSkin();
+        throw new IllegalArgumentException("The probability of the case is not 100% or the random number is not between 0 and 1");
     }
 }

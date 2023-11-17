@@ -21,7 +21,6 @@ public class Case {
     private String name;
 
     @OneToMany(mappedBy = "weaponCase")
-    @JsonManagedReference
     private List<CaseSkin> caseSkins;
 
     public Case(String name, List<Skin> skins) {

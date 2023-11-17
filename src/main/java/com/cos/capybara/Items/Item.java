@@ -24,7 +24,6 @@ public class Item {
             @JoinColumn(name = "skin_name", referencedColumnName = "name"),
             @JoinColumn(name = "skin_weapon_name", referencedColumnName = "weapon_name")
     })
-    @JsonBackReference
     private Skin skin;
 
     @Column(name = "float_value")
