@@ -1,8 +1,9 @@
-package com.cos.capybara.User;
+package com.cos.capybara.Friends;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface FriendsRepository extends JpaRepository<Friends, Long> {
+
 }

@@ -5,7 +5,7 @@ import com.cos.capybara.Skins.Skin;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemService {
+public abstract class ItemService implements DefaultItemService{
 
     public final RandomOrgService randomOrgService;
 
@@ -16,6 +16,9 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+    public Item getItem(Long id){
+        return itemRepository.getReferenceById(id);
+    }
 
     public Item createAndSaveItem(Skin skin) {
         Item item = new Item(skin);

@@ -2,7 +2,6 @@ package com.cos.capybara.Case;
 
 import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.Skins.Skin;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

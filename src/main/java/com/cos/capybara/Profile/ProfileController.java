@@ -5,12 +5,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/profile")
-public class ProfilController {
+public class ProfileController {
 
+    public final ProfileService profileService;
 
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
 
     @GetMapping("/{id}")
     public Profile openProfile(@PathVariable Long id) {
-        return
+        return profileService.getProfile(id);
     }
 }
