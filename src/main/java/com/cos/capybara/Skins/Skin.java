@@ -29,6 +29,8 @@ public class Skin {
     private boolean hasPattern;
 
     @Column(name = "rarity")
-    private String rarity;
+    private Rarity rarity;
+
+    //BLOB
 }
 

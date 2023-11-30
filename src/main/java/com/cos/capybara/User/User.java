@@ -28,6 +28,9 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "friends")
     @ManyToOne
     @JoinColumn(name = "username")
@@ -39,6 +42,11 @@ public class User {
     @JoinColumn(name = "id")
     @JsonBackReference
     private Inventory inventory;
+
+    //profilePicture BLOB
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "balance")
     private int balance;
