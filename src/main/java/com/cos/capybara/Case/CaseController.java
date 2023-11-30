@@ -6,11 +6,11 @@ import com.cos.capybara.Random.RandomService;
 import com.cos.capybara.Skins.Skin;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@RestController("/case")
+@RestController
+@RequestMapping("/case")
 public class CaseController {
 
     public final RandomService randomService;
