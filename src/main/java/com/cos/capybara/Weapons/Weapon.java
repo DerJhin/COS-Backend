@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Weapon {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "weapon_name")
     private String name;
 
 }

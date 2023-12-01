@@ -1,13 +1,15 @@
 package com.cos.capybara.Case;
 
 import com.cos.capybara.CaseSkin.CaseSkin;
+import com.cos.capybara.Skins.Rarity;
 import com.cos.capybara.Skins.Skin;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.*;
+
+import static com.cos.capybara.Skins.Rarity.*;
 
 @Entity
 @Table(name = "cases")
@@ -15,13 +17,15 @@ import java.util.*;
 @Setter
 public class Case {
 
-
     @Id
-    @Column(name = "name")
+    @Column(name = "case_name")
     private String name;
 
     @OneToMany(mappedBy = "weaponCase")
     private List<CaseSkin> caseSkins;
+
+    @Column(name = "price")
+    private String price;
 
     public Case(String name, List<Skin> skins) {
         this.name = name;
@@ -32,7 +36,7 @@ public class Case {
     }
 
     private List<CaseSkin> createCaseSkins(List<Skin> skins){
-        Map<String, Double> probability = createProbability(skins);
+        Map<Rarity, Double> probability = createProbability(skins);
         List<CaseSkin> caseSkins = new ArrayList<CaseSkin>();
         for(Skin toMathSkin : skins){
             caseSkins.add(new CaseSkin(toMathSkin, probability.get(toMathSkin.getRarity())));
@@ -40,13 +44,13 @@ public class Case {
         return caseSkins;
     }
 
-    private Map<String, Double> createProbability(List<Skin> skins) {
-        Map<String, Double> probability = new HashMap<>();
-        probability.put("gold", createProbability(skins, "gold", 0.0026));
-        probability.put("red", createProbability(skins, "red", 0.0064));
-        probability.put("pink", createProbability(skins, "pink", 0.032));
-        probability.put("purple", createProbability(skins, "purple", 0.1598));
-        probability.put("blue", createProbability(skins, "blue", 0.7992));
+    private Map<Rarity, Double> createProbability(List<Skin> skins) {
+        Map<Rarity, Double> probability = new HashMap<>();
+        probability.put(GOLD, createProbability(skins, GOLD.name(), 0.0026));
+        probability.put(RED, createProbability(skins, RED.name(), 0.0064));
+        probability.put(PINK, createProbability(skins, PINK.name(), 0.032));
+        probability.put(PURPLE, createProbability(skins, PURPLE.name(), 0.1598));
+        probability.put(BLUE, createProbability(skins, BLUE.name(), 0.7992));
         return probability;
     }
 
