@@ -21,7 +21,6 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "skin_id")
-    @JsonBackReference
     private Skin skin;
 
     @Column(name = "float_value")
