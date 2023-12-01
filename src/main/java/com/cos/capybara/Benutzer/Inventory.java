@@ -1,4 +1,4 @@
-package com.cos.capybara.Inventory;
+package com.cos.capybara.Benutzer;
 
 import com.cos.capybara.Items.Item;
 import jakarta.persistence.Column;

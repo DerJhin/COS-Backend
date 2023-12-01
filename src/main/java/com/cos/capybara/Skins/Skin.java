@@ -30,5 +30,6 @@ public class Skin {
 
     @Column(name = "rarity")
     private String rarity;
-}
 
+    //BLOB
+}
