@@ -1,16 +1,18 @@
 package com.cos.capybara.Benutzer;
 
-import com.cos.capybara.Friends.Friends;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "benutzer")
@@ -26,9 +28,9 @@ public class Benutzer {
     @Column(name = "username")
     private String username;
 
-    @OneToOne
-    @JoinColumn(name = "friends_id")
-    private Friends friends;
+    @ManyToMany
+    @JoinColumn(name = "benutzer_id")
+    private ArrayList<Benutzer> friends;
 
     @OneToOne
     @JoinColumn(name = "inventory_id")
