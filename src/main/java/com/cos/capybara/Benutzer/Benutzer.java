@@ -1,5 +1,6 @@
 package com.cos.capybara.Benutzer;
 
+import com.cos.capybara.Benutzer.Inventory.Inventory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,4 +44,16 @@ public class Benutzer {
 
     @Column(name = "balance")
     private int balance;
+
+    public Benutzer(String username, String email) {
+        this.username = username;
+        this.email = email;
+        this.inventory = new Inventory();
+        this.friends = new ArrayList<>();
+        this.balance = 0;
+    }
+
+    public Benutzer() {
+
+    }
 }

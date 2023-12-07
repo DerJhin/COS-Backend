@@ -1,14 +1,11 @@
 package com.cos.capybara.Benutzer;
 
-import com.cos.capybara.exeption.BenutzerNotFoundException;
+import com.cos.capybara.Benutzer.Inventory.Inventory;
+import com.cos.capybara.Benutzer.Records.CreateBenutzer;
+import com.cos.capybara.Benutzer.Records.Profile;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/benutzer")
@@ -33,5 +30,10 @@ public class BenutzerController {
     @GetMapping("/profile/{id}")
     public Profile getProfile(@PathVariable Long id){
         return benutzerService.getProfile(id);
+    }
+
+    @PostMapping("/createBenutzer")
+    public Benutzer createBenutzer(@RequestBody CreateBenutzer createBenutzer){
+        return benutzerService.createBenutzer(createBenutzer);
     }
 }

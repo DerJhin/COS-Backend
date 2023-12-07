@@ -1,5 +1,8 @@
 package com.cos.capybara.Benutzer;
 
+import com.cos.capybara.Benutzer.Inventory.Inventory;
+import com.cos.capybara.Benutzer.Records.CreateBenutzer;
+import com.cos.capybara.Benutzer.Records.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,5 +31,10 @@ public class BenutzerService implements DefaultBenutzerService{
         return benutzerRepository.getBenutzerById(id)
                 .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
+    }
+
+    public Benutzer createBenutzer(CreateBenutzer createBenutzer){
+        Benutzer benutzer = new Benutzer(createBenutzer.username(), createBenutzer.email());
+        return benutzerRepository.save(benutzer);
     }
 }

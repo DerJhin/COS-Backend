@@ -1,10 +1,8 @@
 package com.cos.capybara.Friends;
 
-import com.cos.capybara.Benutzer.Benutzer;
 import com.cos.capybara.Benutzer.BenutzerRepository;
 import com.cos.capybara.Benutzer.BenutzerService;
-import com.cos.capybara.Benutzer.Profile;
-import com.cos.capybara.exeption.BenutzerNotFoundException;
+import com.cos.capybara.Benutzer.Records.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

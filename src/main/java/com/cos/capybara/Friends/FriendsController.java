@@ -1,7 +1,6 @@
 package com.cos.capybara.Friends;
 
-import com.cos.capybara.Benutzer.Benutzer;
-import com.cos.capybara.Benutzer.Profile;
+import com.cos.capybara.Benutzer.Records.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
