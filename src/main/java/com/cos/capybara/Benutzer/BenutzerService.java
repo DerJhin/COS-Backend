@@ -29,12 +29,12 @@ public class BenutzerService implements DefaultBenutzerService{
 
     public Profile getProfile(Long id) {
         return benutzerRepository.getBenutzerById(id)
-                .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance()))
+                .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance(), benutzer.getProfilePicture()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
     }
 
     public Benutzer createBenutzer(CreateBenutzer createBenutzer){
-        Benutzer benutzer = new Benutzer(createBenutzer.username(), createBenutzer.email());
+        Benutzer benutzer = new Benutzer(createBenutzer.username(), createBenutzer.email(), createBenutzer.profilePicture());
         return benutzerRepository.save(benutzer);
     }
 }

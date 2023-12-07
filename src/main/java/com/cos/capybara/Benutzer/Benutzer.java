@@ -1,18 +1,11 @@
 package com.cos.capybara.Benutzer;
 
 import com.cos.capybara.Benutzer.Inventory.Inventory;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 @Entity
@@ -37,7 +30,9 @@ public class Benutzer {
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 
-    //BLOB
+    @Lob
+    @Column(name = "profilePicture")
+    private Blob profilePicture;
 
     @Column(name = "email")
     private String email;
@@ -45,12 +40,13 @@ public class Benutzer {
     @Column(name = "balance")
     private int balance;
 
-    public Benutzer(String username, String email) {
+    public Benutzer(String username, String email, Blob profilePicture) {
         this.username = username;
         this.email = email;
         this.inventory = new Inventory();
         this.friends = new ArrayList<>();
         this.balance = 0;
+        this.profilePicture = profilePicture;
     }
 
     public Benutzer() {

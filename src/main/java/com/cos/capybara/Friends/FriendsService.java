@@ -27,7 +27,7 @@ public class FriendsService implements DefaultFriendsService{
         benutzerService.getBenutzer(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));;
         return benutzerRepository.getAllFriendsById(id)
                 .map(friends -> (ArrayList<Profile>) friends.stream()
-                        .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance()))
+                        .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance(), benutzer.getProfilePicture()))
                         .collect(Collectors.toList())
                 );
     }

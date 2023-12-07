@@ -1,4 +1,6 @@
 package com.cos.capybara.Benutzer.Records;
 
-public record CreateBenutzer(String username, String email) {
+import java.sql.Blob;
+
+public record CreateBenutzer(String username, String email, Blob profilePicture) {
 }
