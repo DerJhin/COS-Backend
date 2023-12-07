@@ -4,13 +4,16 @@ import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.Items.Item;
 import com.cos.capybara.Random.RandomService;
 import com.cos.capybara.Skins.Skin;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@RestController("/case")
+@RestController
+@RequestMapping("/case")
 public class CaseController {
 
     public final RandomService randomService;
@@ -27,11 +30,14 @@ public class CaseController {
         return caseService.openCase(caseName);
     }
 
-    @GetMapping("/getSkins/{caseName}")
+    @GetMapping("/getSkinsForCase/{caseName}")
     public Collection<CaseSkin> getSkins(@PathVariable String caseName) {
-        Collection<CaseSkin> caseSkins = caseService.getSkinsOfCase(caseName);
-        System.out.println(caseSkins.size());
-        return caseSkins;
+        return caseService.getSkinsOfCase(caseName).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No Skins found for case: " + caseName));
+    }
+
+    @GetMapping("/getAllCases")
+    public Collection<String> getAllCases() {
+        return caseService.getAllCases();
     }
 
     @PostMapping("/createCase")

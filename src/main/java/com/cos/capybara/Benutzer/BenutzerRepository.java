@@ -11,4 +11,6 @@ public interface BenutzerRepository extends JpaRepository<Benutzer, Long> {
     Optional<ArrayList<Benutzer>> getAllFriendsById(Long id);
 
     Optional<Benutzer> getBenutzerById(Long id);
+
+    Optional<Inventory> getInventoryByInventoryId(Long id);
 }
