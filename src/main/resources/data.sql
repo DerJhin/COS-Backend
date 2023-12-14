@@ -63,6 +63,10 @@ INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
     (8, false, 'Umbral Rabbit', 3, 'Glock'),
     (9, false, 'Sakkaku', 3, 'MAC-10'),
     (10, false, 'Banana Cannon', 3, 'Revolver'),
-    (11, false, 'Test', 6, 'Driver Gloves'),
-    (12, false, 'Test', 6, 'Hand Wraps'),
-    (13, false, 'Test', 6, 'Moto Gloves');
+    (11, false, 'Liquidation', 0, 'Glock'),
+    (12, false, 'Featherweight', 0, 'MP9'),
+    (13, false, 'Cyberforce', 0, 'SG 553');
+    (14, false, 'Rebel', 0, 'Tec-9');
+    (15, false, 'Insomnia', 0, 'MAG-7');
+    (16, false, 'Re.built', 0, 'P250');
+    (17, false, 'Fragments', 0, 'SCAR-20');
