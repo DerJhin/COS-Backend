@@ -24,7 +24,6 @@ public class SkinService implements DefaultSkinService{
                     new IllegalArgumentException("Skin with ID: " + skinID + " not found.")
             ));
         }
-        System.out.print("getSkins" + skins.getLast().getName() + skins.getFirst().getName());
         return skins;
     }
 }

@@ -27,8 +27,6 @@ public class CaseService implements DefaultCaseService {
 
     private final CaseSkinService caseSkinService;
 
-    private final SkinService skinService;
-
     private final CaseSkinRepository CaseSkinRepository;
 
     public CaseService(com.cos.capybara.Case.CaseRepository caseRepository, RandomService randomService, ItemService itemService, CaseSkinService caseSkinService, SkinService skinService, com.cos.capybara.CaseSkin.CaseSkinRepository caseSkinRepository) {
@@ -36,8 +34,7 @@ public class CaseService implements DefaultCaseService {
         this.randomService = randomService;
         this.itemService = itemService;
         this.caseSkinService = caseSkinService;
-        this.skinService = skinService;
-        CaseSkinRepository = caseSkinRepository;
+        this.CaseSkinRepository = caseSkinRepository;
     }
 
     public Case getCase(String name){
@@ -58,11 +55,11 @@ public class CaseService implements DefaultCaseService {
     }
 
     public Case createCase(List<Integer> skinIds, String caseName){
-        List<Skin> skins = skinService.getSkinsById(skinIds);
-        System.out.println("createCase:" + skins.getLast().getName() + skins.getFirst().getName());
-        Case caseToCreate = new Case(caseName, skins);
-        CaseSkinRepository.saveAll(caseToCreate.getCaseSkins());
-        return CaseRepository.save(caseToCreate);
+        List<CaseSkin> caseSkins = caseSkinService.creatCaseSkinsById(skinIds);
+        Case caseToCreate = new Case(caseName, caseSkins);
+        Case caseAfterSearch = CaseRepository.save(caseToCreate);
+        caseSkinService.saveCaseToCaseSkins(caseSkins, caseAfterSearch);
+        return caseAfterSearch;
     }
 
     public Collection<String> getAllCases() {
