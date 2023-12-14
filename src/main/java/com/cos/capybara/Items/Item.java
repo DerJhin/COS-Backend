@@ -12,10 +12,8 @@ import lombok.Setter;
 @Table(name = "items")
 public class Item {
 
-    //TODO@JSE: Need to add Inventory Field
-
     @Id
-    @Column(name = "id")
+    @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

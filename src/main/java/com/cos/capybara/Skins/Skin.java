@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Skin {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "skin_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -30,5 +30,6 @@ public class Skin {
 
     @Column(name = "rarity")
     private String rarity;
-}
 
+    //BLOB
+}
