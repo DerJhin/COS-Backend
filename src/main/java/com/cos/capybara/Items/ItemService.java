@@ -5,6 +5,7 @@ import com.cos.capybara.Skins.Skin;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -18,6 +19,9 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+    public Optional<Item> getItem(Long id) {
+        return itemRepository.getItemById(id);
+    }
 
     public Item createAndSaveItem(Skin skin) {
         Item item = new Item(skin);
