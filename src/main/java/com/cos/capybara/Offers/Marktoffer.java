@@ -28,7 +28,7 @@ public class Marktoffer {
 
     @OneToMany
     @JoinColumn(name = "provider_item_id")
-    private ArrayList<Item> itemProvider;
+    private ArrayList<Item> itemProvided;
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
