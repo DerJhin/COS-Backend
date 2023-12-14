@@ -4,6 +4,8 @@ import com.cos.capybara.RandomOrg.RandomOrgService;
 import com.cos.capybara.Skins.Skin;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ItemService {
 
@@ -22,6 +24,7 @@ public class ItemService {
         item = applyFloat(item);
         item = applyStattrak(item);
         item = applyPattern(item);
+        item.setDate(LocalDateTime.now());
         itemRepository.save(item);
         return item;
     }

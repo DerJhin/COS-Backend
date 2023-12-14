@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -33,6 +35,9 @@ public class Item {
 
     @Column(name = "pattern_number")
     private int patternNumber;
+
+    @Column(name = "date")
+    private LocalDateTime date;
 
     public Item(Skin skin){
         this.skin = skin;

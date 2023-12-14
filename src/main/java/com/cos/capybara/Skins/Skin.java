@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Blob;
+
 @Entity
 @Table(name = "skins")
 @Getter
@@ -31,5 +33,7 @@ public class Skin {
     @Column(name = "rarity")
     private String rarity;
 
-    //BLOB
+    @Lob
+    @Column(name = "image")
+    private Blob image;
 }
