@@ -41,20 +41,21 @@ public class Case {
         for(Skin toMathSkin : skins){
             caseSkins.add(new CaseSkin(toMathSkin, probability.get(toMathSkin.getRarity())));
         }
+        System.out.println("Case:" + caseSkins.getLast().getSkin().getName() + caseSkins.getFirst().getSkin().getName());
         return caseSkins;
     }
 
     private Map<Rarity, Double> createProbability(List<Skin> skins) {
         Map<Rarity, Double> probability = new HashMap<>();
-        probability.put(GOLD, createProbability(skins, GOLD.name(), 0.0026));
-        probability.put(RED, createProbability(skins, RED.name(), 0.0064));
-        probability.put(PINK, createProbability(skins, PINK.name(), 0.032));
-        probability.put(PURPLE, createProbability(skins, PURPLE.name(), 0.1598));
-        probability.put(BLUE, createProbability(skins, BLUE.name(), 0.7992));
+        probability.put(GOLD, createProbability(skins, GOLD, 0.0026));
+        probability.put(RED, createProbability(skins, RED, 0.0064));
+        probability.put(PINK, createProbability(skins, PINK, 0.032));
+        probability.put(PURPLE, createProbability(skins, PURPLE, 0.1598));
+        probability.put(BLUE, createProbability(skins, BLUE, 0.7992));
         return probability;
     }
 
-    private double createProbability(List<Skin> skins, String name, double probability) {
+    private double createProbability(List<Skin> skins, Rarity name, double probability) {
         double count = 0;
         for(Skin skin : skins) {
             if(skin.getRarity().equals(name)) {

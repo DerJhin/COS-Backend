@@ -24,14 +24,13 @@ public class Skin {
 
     @ManyToOne
     @JoinColumn(name = "weapon_name")
-    @JsonBackReference
     private Weapon weapon;
 
     @Column(name = "has_pattern")
     private boolean hasPattern;
 
     @Column(name = "rarity")
-    private String rarity;
+    private Rarity rarity;
 
     @Lob
     @Column(name = "image")

@@ -1,5 +1,6 @@
 package com.cos.capybara.Case;
 
+import com.cos.capybara.Case.Records.CaseRecord;
 import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.Items.Item;
 import com.cos.capybara.Random.RandomService;
@@ -41,7 +42,7 @@ public class CaseController {
     }
 
     @PostMapping("/createCase")
-    public Case createCase(@RequestBody List<Skin> skins , @RequestBody String caseName) {
-        return caseService.createCase(skins, caseName);
+    public Case createCase(@RequestBody CaseRecord caseRecord) {
+        return caseService.createCase(caseRecord.skinIds(), caseRecord.name());
     }
 }

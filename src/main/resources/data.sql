@@ -1,14 +1,36 @@
 -- Insert test data into the 'cases' table
-INSERT INTO cases (case_name, price) VALUES
-    ('TestCase', 10);
-
 INSERT INTO weapons (weapon_name) VALUES
     ('AK-47'),
     ('M4A4'),
     ('M4A1-S'),
     ('P2000'),
     ('Glock'),
+    ('UMP-45'),
     ('AWP'),
+    ('P90'),
+    ('Desert Eagle'),
+    ('Five-Seven'),
+    ('Tec-9'),
+    ('MP9'),
+    ('MP7'),
+    ('MAC-10'),
+    ('P250'),
+    ('CZ75-Auto'),
+    ('Dual Berettas'),
+    ('Nova'),
+    ('XM1014'),
+    ('Sawed-Off'),
+    ('MAG-7'),
+    ('Negev'),
+    ('M249'),
+    ('FAMAS'),
+    ('AUG'),
+    ('SG 553'),
+    ('SSG 08'),
+    ('SCAR-20'),
+    ('G3SG1'),
+    ('Galil AR'),
+    ('Revolver'),
     ('Flip Knife'),
     ('Bayonet'),
     ('Karambit'),
@@ -21,27 +43,26 @@ INSERT INTO weapons (weapon_name) VALUES
     ('Ursus Knife'),
     ('Navaja Knife'),
     ('Stiletto Knife'),
-    ('Talon Knife');
-
+    ('Talon Knife'),
+    ('Driver Gloves'),
+    ('Hand Wraps'),
+    ('Moto Gloves'),
+    ('Specialist Gloves'),
+    ('Sport Gloves'),
+    ('Bloodhound Gloves'),
+    ('Hydra Gloves');
 
 INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
-    (1, true, 'Caseharden', 'PINK', 'AK-47'),
-    (2, false, 'Asiimov', 'RED', 'M4A4'),
-    (3, false, 'Hyper Beast', 'RED', 'M4A1-S'),
-    (4, false, 'Handgun', 'PINK', 'P2000'),
-    (5, true, 'Fade', 'PINK', 'Glock'),
-    (6, false, 'Dragon Lore', 'RED', 'AWP'),
-    (7, false, 'Temukau', 'RED', 'M4A4'),
-    (8, false, 'Doppler', 'GOLD', 'Flip Knife'),
-    (9, true, 'Caseharden', 'GOLD', 'Karambit');
-
-INSERT INTO case_skins (id, probability, skin_id, case_name) VALUES
-    (1, 0.1, 1,'TestCase'),
-    (2, 0.15, 2,'TestCase'),
-    (3, 0.15, 3,'TestCase'),
-    (4, 0.1, 4,'TestCase'),
-    (5, 0.1, 5,'TestCase'),
-    (6, 0.15, 6,'TestCase'),
-    (7, 0.15, 7,'TestCase'),
-    (8, 0.05, 8,'TestCase'),
-    (9, 0.05, 9,'TestCase');
+    (1, false, 'Temukau', 5, 'M4A4'),
+    (2, false, 'Head Shot', 5, 'AK-47'),
+    (3, false, 'Duality', 4, 'AWP'),
+    (4, false, 'Wicked Sick', 4, 'P2000'),
+    (5, false, 'Wild Child', 4, 'UMP-45'),
+    (6, false, 'Emphorosaur-S', 3, 'M4A1-S'),
+    (7, false, 'Neoqueen', 3, 'P90'),
+    (8, false, 'Umbral Rabbit', 3, 'Glock'),
+    (9, false, 'Sakkaku', 3, 'MAC-10'),
+    (10, false, 'Banana Cannon', 3, 'Revolver'),
+    (11, false, 'Test', 6, 'Driver Gloves'),
+    (12, false, 'Test', 6, 'Hand Wraps'),
+    (13, false, 'Test', 6, 'Moto Gloves');
