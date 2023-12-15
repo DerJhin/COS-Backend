@@ -16,14 +16,7 @@ import java.util.List;
 @Service
 public class RandomService implements DefaultRandomService{
 
-    private final RandomOrgService randomOrgService;
-
-    public RandomService(RandomOrgService randomOrgService) {
-        this.randomOrgService = randomOrgService;
-    }
-
-    public Skin getRandomSkin(Case weaponCase){
-        double randomDouble = randomOrgService.generateDecimalFractionsForRandomSkin();
+    public Skin getRandomSkin(Case weaponCase, double randomDouble){
         double cumulativeProbability = 0;
         for (CaseSkin skin : weaponCase.getCaseSkins()) {
             cumulativeProbability += skin.getProbability();

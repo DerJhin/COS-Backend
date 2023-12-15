@@ -1,12 +1,13 @@
 package com.cos.capybara.Case;
 
 import com.cos.capybara.CaseSkin.CaseSkin;
+import com.cos.capybara.CaseSkin.CaseSkinRepository;
 import com.cos.capybara.CaseSkin.CaseSkinService;
 import com.cos.capybara.Items.Item;
 import com.cos.capybara.Items.ItemService;
 import com.cos.capybara.Random.RandomService;
 import com.cos.capybara.Skins.Skin;
-import com.cos.capybara.exeption.EntityNotFoundException;
+import com.cos.capybara.Skins.SkinService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,11 +27,14 @@ public class CaseService implements DefaultCaseService {
 
     private final CaseSkinService caseSkinService;
 
-    public CaseService(com.cos.capybara.Case.CaseRepository caseRepository, RandomService randomService, ItemService itemService, CaseSkinService caseSkinService) {
+    private final CaseSkinRepository CaseSkinRepository;
+
+    public CaseService(com.cos.capybara.Case.CaseRepository caseRepository, RandomService randomService, ItemService itemService, CaseSkinService caseSkinService, SkinService skinService, com.cos.capybara.CaseSkin.CaseSkinRepository caseSkinRepository) {
         this.CaseRepository = caseRepository;
         this.randomService = randomService;
         this.itemService = itemService;
         this.caseSkinService = caseSkinService;
+        this.CaseSkinRepository = caseSkinRepository;
     }
 
     public Case getCase(String name){
@@ -42,7 +46,7 @@ public class CaseService implements DefaultCaseService {
         if (weaponCase.getCaseSkins().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Skins found for case: " + caseName);
         }
-        return itemService.createAndSaveItem(randomService.getRandomSkin(weaponCase));
+        return itemService.createAndSaveItem(weaponCase);
     }
 
     public Optional<Collection<CaseSkin>> getSkinsOfCase(String caseName){
@@ -50,9 +54,12 @@ public class CaseService implements DefaultCaseService {
         return caseSkinService.findByWeaponCase(weaponCase);
     }
 
-    public Case createCase(List<Skin> skins, String caseName){
-        Case caseToCreate = new Case(caseName, skins);
-        return CaseRepository.save(caseToCreate);
+    public Case createCase(List<Integer> skinIds, String caseName){
+        List<CaseSkin> caseSkins = caseSkinService.creatCaseSkinsById(skinIds);
+        Case caseToCreate = new Case(caseName, caseSkins);
+        Case caseAfterSearch = CaseRepository.save(caseToCreate);
+        caseSkinService.saveCaseToCaseSkins(caseSkins, caseAfterSearch);
+        return caseAfterSearch;
     }
 
     public Collection<String> getAllCases() {

@@ -30,9 +30,9 @@ public class Benutzer {
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 
-    @Lob
-    @Column(name = "profilePicture")
-    private Blob profilePicture;
+    // @Lob
+    // @Column(name = "profilePicture")
+    // private Blob profilePicture;
 
     @Column(name = "email")
     private String email;
@@ -46,7 +46,7 @@ public class Benutzer {
         this.inventory = new Inventory();
         this.friends = new ArrayList<>();
         this.balance = 0;
-        this.profilePicture = profilePicture;
+        // this.profilePicture = profilePicture;
     }
 
     public Benutzer() {

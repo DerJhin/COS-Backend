@@ -1,7 +1,6 @@
 package com.cos.capybara.Items;
 
 import com.cos.capybara.Skins.Skin;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +20,6 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "skin_id")
-    @JsonBackReference
     private Skin skin;
 
     @Column(name = "float_value")

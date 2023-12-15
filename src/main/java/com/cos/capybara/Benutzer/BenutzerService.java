@@ -29,7 +29,7 @@ public class BenutzerService implements DefaultBenutzerService{
 
     public Profile getProfile(Long id) {
         return benutzerRepository.getBenutzerById(id)
-                .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance(), benutzer.getProfilePicture()))
+                .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance(), null))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
     }
 
