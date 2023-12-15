@@ -46,7 +46,7 @@ public class CaseService implements DefaultCaseService {
         if (weaponCase.getCaseSkins().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Skins found for case: " + caseName);
         }
-        return itemService.createAndSaveItem(randomService.getRandomSkin(weaponCase));
+        return itemService.createAndSaveItem(weaponCase);
     }
 
     public Optional<Collection<CaseSkin>> getSkinsOfCase(String caseName){

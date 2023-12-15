@@ -116,7 +116,8 @@ INSERT INTO case_skins (probability, skin_id, case_name) VALUES
 (0.11417142857142858, 14, 'Revolution'),
 (0.11417142857142858, 15, 'Revolution'),
 (0.11417142857142858, 16, 'Revolution'),
-(0.11417142857142858, 17, 'Revolution');
+(0.11417142857142858, 17, 'Revolution'),
+(0.0025, 35, 'Revolution');
 
 -- Füge "Snakebite" case in die Tabelle "cases" ein
 INSERT INTO case_skins (probability, skin_id, case_name) VALUES
@@ -136,4 +137,5 @@ INSERT INTO case_skins (probability, skin_id, case_name) VALUES
 (0.11417142857142858, 31, 'Snakebite'),
 (0.11417142857142858, 32, 'Snakebite'),
 (0.11417142857142858, 33, 'Snakebite'),
-(0.11417142857142858, 34, 'Snakebite');
+(0.11417142857142858, 34, 'Snakebite'),
+(0.0025, 35, 'Snakebite');

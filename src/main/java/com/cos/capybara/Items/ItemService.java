@@ -1,21 +1,34 @@
 package com.cos.capybara.Items;
 
+import com.cos.capybara.Case.Case;
+import com.cos.capybara.Random.RandomService;
 import com.cos.capybara.RandomOrg.RandomOrgService;
 import com.cos.capybara.Skins.Skin;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class ItemService {
 
     public final RandomOrgService randomOrgService;
 
+    public final RandomService randomService;
+
     public final ItemRepository itemRepository;
 
-    public ItemService(RandomOrgService randomOrgService, ItemRepository itemRepository) {
+    Random random = new Random();
+
+    @Value("${api.use}")
+    private boolean useApiToCreateNumbers;
+
+    public ItemService(RandomOrgService randomOrgService, RandomService randomService, ItemRepository itemRepository) {
         this.randomOrgService = randomOrgService;
+        this.randomService = randomService;
         this.itemRepository = itemRepository;
     }
 
@@ -23,31 +36,30 @@ public class ItemService {
         return itemRepository.getItemById(id);
     }
 
-    public Item createAndSaveItem(Skin skin) {
-        Item item = new Item(skin);
-        item = applyFloat(item);
-        item = applyStattrak(item);
-        item = applyPattern(item);
+    public Item createAndSaveItem(Case weaponCase) {
+        ArrayList<Double> doubleValue = getDouble();
+        ArrayList<Integer> integerValue = getInteger();
+        Item item = new Item(randomService.getRandomSkin(weaponCase, doubleValue.get(0)));
+        item = applyFloat(item, doubleValue.get(1));
+        item = applyStattrak(item, integerValue.get(0));
+        item = applyPattern(item, integerValue.get(1));
         item.setDate(LocalDateTime.now());
         itemRepository.save(item);
         return item;
     }
-    public Item applyFloat(Item item){
-        double floatNumber = randomOrgService.generateDecimalFractionsForFloatSkin();
+    public Item applyFloat(Item item, double floatNumber){
         item.setFloatValue(floatNumber);
         item.setFloatString(getFloatString(floatNumber));
         return item;
     }
 
-    public Item applyStattrak(Item item){
-        int stattrak = randomOrgService.generateIntegersForStattrak();
-        item.setStatTrak(stattrak == 1);
+    public Item applyStattrak(Item item, int stattrak){
+        item.setStatTrak(stattrak >= 1 && stattrak <= 99);
         return item;
     }
 
-    public Item applyPattern(Item item){
+    public Item applyPattern(Item item, int patternNumber){
         if(skinHasPattern(item.getSkin())){
-            int patternNumber = randomOrgService.generateIntegersForPattern();
             item.setPatternNumber(patternNumber);
         }
         return item;
@@ -69,5 +81,30 @@ public class ItemService {
 
     public boolean skinHasPattern(Skin skin){
         return skin.isHasPattern();
+    }
+
+    private ArrayList<Double> getDouble(){
+        if(useApiToCreateNumbers){
+         return randomOrgService.generateDecimalFractions();
+        } else {
+            ArrayList<Double> randomDoubleList = new ArrayList<>();
+            randomDoubleList.add(random.nextDouble());
+            randomDoubleList.add(random.nextDouble());
+
+            return randomDoubleList;
+        }
+    }
+
+    private ArrayList<Integer> getInteger(){
+        if(useApiToCreateNumbers){
+            return randomOrgService.generateIntegers();
+        } else {
+            ArrayList<Integer> randomIntegerList = new ArrayList<>();
+            randomIntegerList.add(random.nextInt(999));
+            randomIntegerList.add(random.nextInt(999));
+
+            return randomIntegerList;
+        }
+
     }
 }
