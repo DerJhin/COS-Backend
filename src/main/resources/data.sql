@@ -51,6 +51,7 @@ INSERT INTO weapons (weapon_name) VALUES
     ('Sport Gloves'),
     ('Bloodhound Gloves'),
     ('Hydra Gloves');
+    ('Spitting Lama');
 
 INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
     (1, false, 'Temukau', 5, 'M4A4'),
@@ -69,10 +70,30 @@ INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
     (14, false, 'Rebel', 2, 'Tec-9'),
     (15, false, 'Insomnia', 2, 'MAG-7'),
     (16, false, 'Re.built', 2, 'P250'),
-    (17, false, 'Fragments', 2, 'SCAR-20');
+    (17, false, 'Fragments', 2, 'SCAR-20'),
+
+    (18, false, 'The Traitor', 5, 'USP-S'),
+    (19, false, 'In Living Color', 5, 'M4A4'),
+    (20, false, 'Chromatic Aberration', 4, 'Galil AR'),
+    (21, false, 'Food Chain', 4, 'MP9'),
+    (22, false, 'XOXO', 4, 'XM1014'),
+    (23, false, 'Slate', 3, 'AK-47'),
+    (24, false, 'Trigger Discipline', 3, 'Desert Eagle'),
+    (25, false, 'Cyber Shell', 3, 'P250'),
+    (26, false, 'Button Masher', 3, 'MAC-10'),
+    (27, false, 'dev_texture', 3, 'Negev'),
+    (28, false, 'Clear Polymer', 2, 'Glock'),
+    (29, false, 'Circaetus', 2, 'CZ75-Auto '),
+    (30, false, 'Heavy Metal', 2, 'SG 553'),
+    (31, false, 'Junk Yard', 2, 'Revolver '),
+    (32, false, 'Windblown', 2, 'Nova'),
+    (33, false, 'O.S.I.P.R.', 2, 'M249'),
+    (34, false, 'Oscillator', 2, 'UMP-45');
+
+    (35, false, 'Undercover Version', 6, 'Spitting Lama');
 
 
--- Erstelle die Tabelle
+-- Erstelle die Tabelle "cases"
 CREATE TABLE cases (
     id INT AUTO_INCREMENT PRIMARY KEY,
     probability DECIMAL(10, 6),
@@ -80,7 +101,7 @@ CREATE TABLE cases (
     case_name VARCHAR(255)
 );
 
--- Füge Daten in die Tabelle ein
+-- Füge "Revolution" case in die Tabelle "cases" ein
 INSERT INTO cases (probability, skin_id, case_name) VALUES
 (0.0032, 1, 'Revolution'),
 (0.0032, 2, 'Revolution'),
@@ -99,3 +120,23 @@ INSERT INTO cases (probability, skin_id, case_name) VALUES
 (0.11417142857142858, 15, 'Revolution'),
 (0.11417142857142858, 16, 'Revolution'),
 (0.11417142857142858, 17, 'Revolution');
+
+-- Füge "Snakebite" case in die Tabelle "cases" ein
+INSERT INTO cases (probability, skin_id, case_name) VALUES
+(0.0032, 18, 'Snakebite'),
+(0.0032, 19, 'Snakebite'),
+(0.010666666666666666, 20, 'Snakebite'),
+(0.010666666666666666, 21, 'Snakebite'),
+(0.010666666666666666,22, 'Snakebite'),
+(0.03196, 23, 'Snakebite'),
+(0.03196, 24, 'Snakebite'),
+(0.03196, 25, 'Snakebite'),
+(0.03196, 26, 'Snakebite'),
+(0.03196, 27, 'Snakebite'),
+(0.11417142857142858, 28, 'Snakebite'),
+(0.11417142857142858, 29, 'Snakebite'),
+(0.11417142857142858, 30, 'Snakebite'),
+(0.11417142857142858, 31, 'Snakebite'),
+(0.11417142857142858, 32, 'Snakebite'),
+(0.11417142857142858, 33, 'Snakebite'),
+(0.11417142857142858, 34, 'Snakebite');
