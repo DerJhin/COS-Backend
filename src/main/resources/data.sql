@@ -70,3 +70,32 @@ INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
     (15, false, 'Insomnia', 2, 'MAG-7'),
     (16, false, 'Re.built', 2, 'P250'),
     (17, false, 'Fragments', 2, 'SCAR-20');
+
+
+-- Erstelle die Tabelle
+CREATE TABLE cases (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    probability DECIMAL(10, 6),
+    skin_id INT,
+    case_name VARCHAR(255)
+);
+
+-- Füge Daten in die Tabelle ein
+INSERT INTO cases (probability, skin_id, case_name) VALUES
+(0.0032, 1, 'Revolution'),
+(0.0032, 2, 'Revolution'),
+(0.010666666666666666, 3, 'Revolution'),
+(0.010666666666666666, 4, 'Revolution'),
+(0.010666666666666666, 5, 'Revolution'),
+(0.03196, 6, 'Revolution'),
+(0.03196, 7, 'Revolution'),
+(0.03196, 8, 'Revolution'),
+(0.03196, 9, 'Revolution'),
+(0.03196, 10, 'Revolution'),
+(0.11417142857142858, 11, 'Revolution'),
+(0.11417142857142858, 12, 'Revolution'),
+(0.11417142857142858, 13, 'Revolution'),
+(0.11417142857142858, 14, 'Revolution'),
+(0.11417142857142858, 15, 'Revolution'),
+(0.11417142857142858, 16, 'Revolution'),
+(0.11417142857142858, 17, 'Revolution');
