@@ -19,7 +19,7 @@ public class BenutzerController {
 
     @GetMapping("/{id}")
     public Benutzer getBenutzer(@PathVariable Long id){
-        return benutzerService.getBenutzer(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
+        return benutzerService.getBenutzer(id);
     }
 
     @GetMapping("/{id}/inventory")

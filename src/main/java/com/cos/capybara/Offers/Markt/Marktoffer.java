@@ -1,4 +1,4 @@
-package com.cos.capybara.Offers;
+package com.cos.capybara.Offers.Markt;
 
 import com.cos.capybara.Benutzer.Benutzer;
 import com.cos.capybara.Items.Item;
@@ -26,11 +26,25 @@ public class Marktoffer {
     @Column(name = "status")
     private String status;
 
-    @OneToMany
+    @Column(name = "price")
+    private int price;
+
+    @ManyToOne
     @JoinColumn(name = "provider_item_id")
-    private ArrayList<Item> itemProvided;
+    private Item itemProvided;
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
     private Benutzer buyer;
+
+    public Marktoffer(Benutzer provider, Item itemProvided, int price) {
+        this.provider = provider;
+        this.itemProvided = itemProvided;
+        this.status = "open";
+        this.buyer = null;
+        this.price = price;
+    }
+
+    public Marktoffer() {
+    }
 }

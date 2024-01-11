@@ -1,6 +1,7 @@
 package com.cos.capybara.Benutzer;
 
 import com.cos.capybara.Benutzer.Inventory.Inventory;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class Benutzer {
 
     @OneToOne
     @JoinColumn(name = "inventory_id")
+    @JsonBackReference
     private Inventory inventory;
 
     // @Lob

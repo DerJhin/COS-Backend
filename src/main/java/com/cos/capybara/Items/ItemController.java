@@ -16,6 +16,6 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public Item getItem(@PathVariable Long id) {
-        return itemService.getItem(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found with id: " + id));
+        return itemService.getItem(id);
     }
 }

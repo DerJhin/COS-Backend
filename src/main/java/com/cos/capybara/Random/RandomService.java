@@ -2,15 +2,10 @@ package com.cos.capybara.Random;
 
 import com.cos.capybara.Case.Case;
 import com.cos.capybara.CaseSkin.CaseSkin;
-import com.cos.capybara.RandomOrg.RandomOrgService;
 import com.cos.capybara.Skins.Skin;
-import org.springframework.data.repository.query.ParameterOutOfBoundsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import org.w3c.dom.ranges.RangeException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +24,7 @@ public class RandomService implements DefaultRandomService{
      */
     @Override
     public Skin getRandomSkin(Case weaponCase, double targetProbability) {
+        System.out.println(targetProbability);
         double cumulativeProbability = 0;
         List<CaseSkin> caseSkins = weaponCase.getCaseSkins();
         for (CaseSkin skinCase : caseSkins) {

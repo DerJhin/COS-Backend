@@ -40,8 +40,8 @@ public class ItemService {
         this.benutzerService = benutzerService;
     }
 
-    public Optional<Item> getItem(Long id) {
-        return itemRepository.getItemById(id);
+    public Item getItem(Long id) {
+        return itemRepository.getItemById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found with id: " + id));
     }
 
     public Item createAndSaveItem(Case weaponCase, long userId) {

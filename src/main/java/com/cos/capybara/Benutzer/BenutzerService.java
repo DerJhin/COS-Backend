@@ -28,8 +28,8 @@ public class BenutzerService implements DefaultBenutzerService{
         this.inventoryRepository = inventoryRepository;
     }
 
-    public Optional<Benutzer> getBenutzer(Long id){
-        return benutzerRepository.getBenutzerById(id);
+    public Benutzer getBenutzer(Long id){
+        return benutzerRepository.getBenutzerById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
     }
 
     public Optional<Inventory> getInventar(Long id){
@@ -39,7 +39,7 @@ public class BenutzerService implements DefaultBenutzerService{
 
     public Profile getProfile(Long id) {
         return benutzerRepository.getBenutzerById(id)
-                .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance(), null))
+                .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
     }
 
@@ -73,11 +73,28 @@ public class BenutzerService implements DefaultBenutzerService{
         inventoryRepository.save(inventory);
     }
 
+    public void removeFromInventory(Item item, long userId){
+        Benutzer benutzer = benutzerRepository.getBenutzerById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + userId));
+        Inventory inventory = benutzer.getInventory();
+        if(null == inventory.getItems()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found in inventory");
+        }else{
+            List<Item> items= inventory.getItems();
+            items.remove(item);
+            inventory.setItems(items);
+        }
+        inventoryRepository.save(inventory);
+    }
+
     public List<BenutzerSearch> searchBenutzer(String username){
         return benutzerRepository.getBenutzersByUsernameStartingWith(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No benutzer found with username: " + username))
                 .stream()
                 .map(benutzer -> new BenutzerSearch(benutzer.getId(), benutzer.getUsername()))
                 .collect(Collectors.toList());
+    }
+
+    public Benutzer save(Benutzer benutzer){
+        return benutzerRepository.save(benutzer);
     }
 }
