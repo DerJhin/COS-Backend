@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,9 @@ public class FriendsService implements DefaultFriendsService{
     }
 
     public void addFriend(Long id1, Long id2){
+        if(Objects.equals(id1, id2)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Benutzer can not add itself as a friend");
+        }
         Benutzer benutzer1 = benutzerService.getBenutzer(id1).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id1));
         Benutzer benutzer2 = benutzerService.getBenutzer(id2).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id2));
         List<Benutzer> friend1 = benutzer1.getFriends();
