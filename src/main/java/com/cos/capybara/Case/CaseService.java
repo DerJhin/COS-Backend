@@ -1,5 +1,6 @@
 package com.cos.capybara.Case;
 
+import com.cos.capybara.Case.Records.CaseShow;
 import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.CaseSkin.CaseSkinRepository;
 import com.cos.capybara.CaseSkin.CaseSkinService;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CaseService implements DefaultCaseService {
@@ -62,8 +64,8 @@ public class CaseService implements DefaultCaseService {
         return caseAfterSearch;
     }
 
-    public Collection<String> getAllCases() {
-        return CaseRepository.findAll().stream().map(Case::getName).toList();
+    public Collection<CaseShow> getAllCases() {
+        return CaseRepository.findAll().stream().map(weaponCase -> new CaseShow(weaponCase.getName(), weaponCase.getImage())).collect(Collectors.toList());
     }
 
     public void save(Case weaponCase){

@@ -2,6 +2,7 @@ package com.cos.capybara.Case;
 
 import com.cos.capybara.Benutzer.BenutzerService;
 import com.cos.capybara.Case.Records.CaseRecord;
+import com.cos.capybara.Case.Records.CaseShow;
 import com.cos.capybara.CaseSkin.CaseSkin;
 import com.cos.capybara.Items.Item;
 import com.cos.capybara.Random.RandomService;
@@ -43,7 +44,7 @@ public class CaseController {
     }
 
     @GetMapping("/getAllCases")
-    public Collection<String> getAllCases() {
+    public Collection<CaseShow> getAllCases() {
         return caseService.getAllCases();
     }
 
