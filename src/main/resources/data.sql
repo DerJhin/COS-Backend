@@ -97,10 +97,10 @@ INSERT INTO inventory (inventory_id) VALUES
     (2),
     (3);
 
-INSERT INTO benutzer (username, email, balance, inventory_id, password) VALUES
-('Joris', 'user1@example.com', 100, 1, 12345678),
-('Lucas', 'user2@example.com', 150, 2, 12345678),
-('Tim', 'user3@example.com', 200, 3, 12345678);
+INSERT INTO benutzer (username, email, balance, inventory_id, password, last_login) VALUES
+('Joris', 'user1@example.com', 100, 1, 12345678, '2024-01-07'),
+('Lucas', 'user2@example.com', 150, 2, 12345678, '2024-01-07'),
+('Tim', 'user3@example.com', 200, 3, 12345678, '2024-01-07');
 
 
 INSERT INTO cases (case_name, image) VALUES

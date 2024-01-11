@@ -8,7 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Blob;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -51,6 +54,9 @@ public class Benutzer {
     @JsonIgnore
     private String password;
 
+    @Column(name = "last_login")
+    private LocalDate lastLogin;
+
     public Benutzer(String username, String password) {
         this.username = username;
         this.email = email;
@@ -59,6 +65,7 @@ public class Benutzer {
         this.balance = 0;
         // this.profilePicture = profilePicture;
         this.password = password;
+        this.lastLogin = LocalDate.now();
     }
 
     public Benutzer() {

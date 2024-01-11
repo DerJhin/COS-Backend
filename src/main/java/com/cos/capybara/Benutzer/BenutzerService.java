@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,8 +51,14 @@ public class BenutzerService implements DefaultBenutzerService{
     }
 
     public Benutzer login(Login loginInfo){
+        java.util.Date currentDate = new java.util.Date();
         Benutzer benutzer = benutzerRepository.getBenutzerByUsername(loginInfo.username()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with username: " + loginInfo.username()));;
         if(benutzer.getPassword().equals(loginInfo.password())){
+            System.out.println(LocalDate.now().isAfter(benutzer.getLastLogin().plusDays(1)));
+            if(LocalDate.now().isAfter(benutzer.getLastLogin().plusDays(1))){
+                benutzer.setBalance(benutzer.getBalance() + 100);
+                benutzerRepository.save(benutzer);
+            }
             return benutzer;
         }else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password does not match");
