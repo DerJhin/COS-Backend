@@ -58,10 +58,10 @@ public class TradeService {
         return tradeRepositroy.findAllBySenderId(id);
     }
 
-    public void acceptTradeoffer(TradeofferCreate tradeofferCreate) {
-        Tradeoffer tradeoffer = tradeRepositroy.findById(tradeofferCreate.senderId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tradeoffer not found with id: " + tradeofferCreate.senderId()));
-        CheckForTradeOffer result = getCheckForTradeOffer(tradeofferCreate);
+    public void acceptTradeoffer(Long id) {
+        Tradeoffer tradeoffer = tradeRepositroy.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tradeoffer not found with id: " + id));
+        CheckForTradeOffer result = getCheckForTradeOffer(tradeoffer.getItemsSender(), tradeoffer.getItemsReceiver(), tradeoffer.getSender(), tradeoffer.getReceiver());
 
         benutzerService.removeFromInventory(result.itemsSender, result.sender);
         benutzerService.removeFromInventory(result.itemsReceiver, result.receiver);
@@ -84,6 +84,12 @@ public class TradeService {
         List<Item> itemsReceiver = itemService.findAllById(tradeofferCreate.itemsReceiver());
         Benutzer sender = benutzerService.getBenutzer(tradeofferCreate.senderId());
         Benutzer receiver = benutzerService.getBenutzer(tradeofferCreate.receiverId());
+        checkItems(itemsSender, itemsReceiver, sender, receiver);
+        CheckForTradeOffer result = new CheckForTradeOffer(itemsSender, itemsReceiver, sender, receiver);
+        return result;
+    }
+
+    private CheckForTradeOffer getCheckForTradeOffer(List<Item> itemsSender, List<Item> itemsReceiver, Benutzer sender, Benutzer receiver) {
         checkItems(itemsSender, itemsReceiver, sender, receiver);
         CheckForTradeOffer result = new CheckForTradeOffer(itemsSender, itemsReceiver, sender, receiver);
         return result;

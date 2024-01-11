@@ -18,9 +18,9 @@ public class TradeController {
         return tradeService.createTradeoffer(tradeofferCreate);
     }
 
-    @PostMapping("/accept")
-    public void acceptTradeoffer(@RequestBody TradeofferCreate tradeofferCreate) {
-        tradeService.acceptTradeoffer(tradeofferCreate);
+    @PostMapping("/accept/{id}")
+    public void acceptTradeoffer(@PathVariable Long id) {
+        tradeService.acceptTradeoffer(id);
     }
 
     @PostMapping("/decline/{id}")
@@ -28,7 +28,7 @@ public class TradeController {
         tradeService.declineTradeoffer(id);
     }
 
-    @PostMapping("/cancel")
+    @PostMapping("/cancel/{id}")
     public void cancelTradeoffer(@PathVariable Long id) {
         tradeService.cancelTradeoffer(id);
     }
