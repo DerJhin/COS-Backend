@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @Entity
 @Table(name = "benutzer")
@@ -24,13 +25,11 @@ public class Benutzer {
     @Column(name = "username")
     private String username;
 
-   /* @ManyToMany
+    @ManyToMany
     @JoinTable(name = "friendship",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id"))
-    private ArrayList<Benutzer> friends = new ArrayList<>(new HashSet<>());
-
-*/
+    private List<Benutzer> friends = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "inventory_id")
@@ -54,7 +53,7 @@ public class Benutzer {
         this.username = username;
         this.email = email;
         this.inventory = new Inventory();
-        //this.friends = new ArrayList<>();
+        this.friends = new ArrayList<>();
         this.balance = 0;
         // this.profilePicture = profilePicture;
         this.password = password;

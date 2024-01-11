@@ -43,6 +43,7 @@ public class BenutzerService implements DefaultBenutzerService{
 
     public Benutzer createBenutzer(CreateBenutzer createBenutzer){
         Benutzer benutzer = new Benutzer(createBenutzer.username(), createBenutzer.password());
+        inventoryRepository.save(benutzer.getInventory());
         return benutzerRepository.save(benutzer);
     }
 
