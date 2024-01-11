@@ -25,6 +25,7 @@ INSERT INTO weapons (weapon_name) VALUES
     ('M249'),
     ('FAMAS'),
     ('AUG'),
+    ('MP5-SD'),
     ('SG 553'),
     ('SSG 08'),
     ('SCAR-20'),
@@ -54,42 +55,42 @@ INSERT INTO weapons (weapon_name) VALUES
     ('USP-S'),
     ('Spitting Lama');
 
-INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
-    (1, false, 'Temukau', 5, 'M4A4'),
-    (2, false, 'Head Shot', 5, 'AK-47'),
-    (3, false, 'Duality', 4, 'AWP'),
-    (4, false, 'Wicked Sick', 4, 'P2000'),
-    (5, false, 'Wild Child', 4, 'UMP-45'),
-    (6, false, 'Emphorosaur-S', 3, 'M4A1-S'),
-    (7, false, 'Neoqueen', 3, 'P90'),
-    (8, false, 'Umbral Rabbit', 3, 'Glock'),
-    (9, false, 'Sakkaku', 3, 'MAC-10'),
-    (10, false, 'Banana Cannon', 3, 'Revolver'),
-    (11, false, 'Liquidation', 2, 'Glock'),
-    (12, false, 'Featherweight', 2, 'MP9'),
-    (13, false, 'Cyberforce', 2, 'SG 553'),
-    (14, false, 'Rebel', 2, 'Tec-9'),
-    (15, false, 'Insomnia', 2, 'MAG-7'),
-    (16, false, 'Re.built', 2, 'P250'),
-    (17, false, 'Fragments', 2, 'SCAR-20'),
-    (18, false, 'The Traitor', 5, 'USP-S'),
-    (19, false, 'In Living Color', 5, 'M4A4'),
-    (20, false, 'Chromatic Aberration', 4, 'Galil AR'),
-    (21, false, 'Food Chain', 4, 'MP9'),
-    (22, false, 'XOXO', 4, 'XM1014'),
-    (23, false, 'Slate', 3, 'AK-47'),
-    (24, false, 'Trigger Discipline', 3, 'Desert Eagle'),
-    (25, false, 'Cyber Shell', 3, 'P250'),
-    (26, false, 'Button Masher', 3, 'MAC-10'),
-    (27, false, 'dev_texture', 3, 'Negev'),
-    (28, false, 'Clear Polymer', 2, 'Glock'),
-    (29, false, 'Circaetus', 2, 'CZ75-Auto'),
-    (30, false, 'Heavy Metal', 2, 'SG 553'),
-    (31, false, 'Junk Yard', 2, 'Revolver'),
-    (32, false, 'Windblown', 2, 'Nova'),
-    (33, false, 'O.S.I.P.R.', 2, 'M249'),
-    (34, false, 'Oscillator', 2, 'UMP-45'),
-    (35, false, 'Undercover Version', 6, 'Spitting Lama');
+INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name, image) VALUES
+    (1, false, 'Temukau', 5, 'M4A4', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_cu_m4a4_temukau_light_large.a41eb80c70cbbee5d84e53b5cd1eaa10954c938d.png'),
+    (2, false, 'Head Shot', 5, 'AK-47', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_cu_ak_head_shot_holo_light_large.85be84ba7c07917493b8e8a66c9d95c928ebe8b6.png'),
+    (3, false, 'Duality', 4, 'AWP', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_gs_awp_limbo_snake_light_large.60984ce1e5c1a4ac10e83444a9b7e7f78dd98b1e.png'),
+    (4, false, 'Wicked Sick', 4, 'P2000', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_hkp2000_cu_p2000_decline_light_large.7f57145674a5e41b3b8e7fe70be4ffbb57ec6f84.png'),
+    (5, false, 'Wild Child', 4, 'UMP-45', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ump45_cu_ump_clutch_kick_light_large.b57e43c07b433517b1c3bdaa1e52ce44878af481.png'),
+    (6, false, 'Emphorosaur-S', 3, 'M4A1-S', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_silencer_cu_m4a1s_feeding_frenzy_light_large.e1cb803e0e10ae4457e42d34ec8515b1500f4762.png'),
+    (7, false, 'Neoqueen', 3, 'P90', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p90_gs_p90_neoqueen_light_large.fa2a81f8c7906b2683b5eb4b562edd2529ad2cf0.png'),
+    (8, false, 'Umbral Rabbit', 3, 'Glock', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_glock_cu_glock_moon_rabbit_light_large.9063b9745250446c657632eb13a6325f51d101f2.png'),
+    (9, false, 'Sakkaku', 3, 'MAC-10' , 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mac10_cu_mac10_sakkaku_light_large.b590689d0ca099e8a759dd0a86da0710a58bca42.png'),
+    (10, false, 'Banana Cannon', 3, 'Revolver', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_revolver_gs_r8_banana_light_large.50f0b729a36a405d48b41d58463234dbbd15b9cf.png'),
+    (11, false, 'Liquidation', 2, 'MP5-SD', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mp5sd_cu_mp5sd_quick_liquidation_light_large.2b446c710928debe38469e33b3b9030bd218c0e3.png'),
+    (12, false, 'Featherweight', 2, 'MP9', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mp9_cu_mp9_superlight_light_large.81ad837f4c889f250fa03b227ef74555614de55d.png'),
+    (13, false, 'Cyberforce', 2, 'SG 553', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_sg556_cu_sg553_cyberforce_light_large.63aa4e611195d801eb706ac65d38df68f98e2b76.png'),
+    (14, false, 'Rebel', 2, 'Tec-9', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_tec9_cu_tec9_freedom_light_large.bb79585222a88d4dd3b154915c5527cac7e507d1.png'),
+    (15, false, 'Insomnia', 2, 'MAG-7', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mag7_cu_mag7_insomnia_light_large.0d971fb17ca0bb1df7baed6a1caa902c56c1ea5b.png'),
+    (16, false, 'Re.built', 2, 'P250', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p250_cu_p250_rebuilt_light_large.69d4fcb9a8151d09818d1c26cf4c7b03d046b5a1.png'),
+    (17, false, 'Fragments', 2, 'SCAR-20', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_scar20_gs_scar_fragments_black_light_large.d6bde287b06ba2380ba07621a0b06c36b13c4025.png'),
+    (18, false, 'The Traitor', 5, 'USP-S',''),
+    (19, false, 'In Living Color', 5, 'M4A4',''),
+    (20, false, 'Chromatic Aberration', 4, 'Galil AR',''),
+    (21, false, 'Food Chain', 4, 'MP9',''),
+    (22, false, 'XOXO', 4, 'XM1014',''),
+    (23, false, 'Slate', 3, 'AK-47',''),
+    (24, false, 'Trigger Discipline', 3, 'Desert Eagle',''),
+    (25, false, 'Cyber Shell', 3, 'P250',''),
+    (26, false, 'Button Masher', 3, 'MAC-10',''),
+    (27, false, 'dev_texture', 3, 'Negev',''),
+    (28, false, 'Clear Polymer', 2, 'Glock',''),
+    (29, false, 'Circaetus', 2, 'CZ75-Auto',''),
+    (30, false, 'Heavy Metal', 2, 'SG 553',''),
+    (31, false, 'Junk Yard', 2, 'Revolver',''),
+    (32, false, 'Windblown', 2, 'Nova',''),
+    (33, false, 'O.S.I.P.R.', 2, 'M249',''),
+    (34, false, 'Oscillator', 2, 'UMP-45',''),
+    (35, false, 'Undercover Version', 6, 'Spitting Lama', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_snakeskin_white_light_large.f6a54c7a3cf91ecbe0a712bb2126bfe77f86825e.png');
 
 INSERT INTO inventory (inventory_id) VALUES
     (1),
@@ -102,9 +103,9 @@ INSERT INTO benutzer (username, email, balance, inventory_id, password) VALUES
 ('user3', 'user3@example.com', 200, 3, 1234);
 
 
-INSERT INTO cases (case_name) VALUES
-('Revolution'),
-('Snakebite');
+INSERT INTO cases (case_name, image) VALUES
+('Revolution', 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFQynaHMJT9B74-ywtjYxfOmMe_Vx28AucQj3brAoYrz3Fay_kY4MG_wdYeLMlhpLMaM-1U/256fx256f'),
+('Snakebite', '');
 
 -- Füge "Revolution" case in die Tabelle "cases" ein
 INSERT INTO case_skins (probability, skin_id, case_name) VALUES

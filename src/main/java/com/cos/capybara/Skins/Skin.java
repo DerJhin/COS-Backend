@@ -32,7 +32,6 @@ public class Skin {
     @Column(name = "rarity")
     private Rarity rarity;
 
-    @Lob
     @Column(name = "image")
-    private Blob image;
+    private String image;
 }

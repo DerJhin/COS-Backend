@@ -27,6 +27,9 @@ public class Case {
     @Column(name = "price")
     private String price;
 
+    @Column(name = "image")
+    private String image;
+
     public Case(String name, List<CaseSkin> skins) {
         this.name = name;
         this.caseSkins = skins;
