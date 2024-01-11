@@ -20,6 +20,6 @@ public class Inventory {
     private Long id;
 
     @Column(name = "items")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Item> items;
 }

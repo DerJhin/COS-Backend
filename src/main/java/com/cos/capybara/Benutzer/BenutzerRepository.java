@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface BenutzerRepository extends JpaRepository<Benutzer, Long> {
-    Optional<ArrayList<Benutzer>> getAllFriendsById(Long id);
+    Optional<ArrayList<Benutzer>> getAllBenutzerById(Long id);
 
     Optional<Benutzer> getBenutzerById(Long id);
 

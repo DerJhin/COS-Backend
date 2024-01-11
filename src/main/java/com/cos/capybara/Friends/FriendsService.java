@@ -1,5 +1,6 @@
 package com.cos.capybara.Friends;
 
+import com.cos.capybara.Benutzer.Benutzer;
 import com.cos.capybara.Benutzer.BenutzerRepository;
 import com.cos.capybara.Benutzer.BenutzerService;
 import com.cos.capybara.Benutzer.Records.Profile;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -23,12 +25,23 @@ public class FriendsService implements DefaultFriendsService{
         this.benutzerService = benutzerService;
     }
 
-    public Optional<ArrayList<Profile>> getFriends(Long id){
-        benutzerService.getBenutzer(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));;
-        return benutzerRepository.getAllFriendsById(id)
-                .map(friends -> (ArrayList<Profile>) friends.stream()
-                        .map(benutzer -> new Profile(benutzer.getId(), benutzer.getUsername(), benutzer.getEmail(), benutzer.getBalance(), null))
-                        .collect(Collectors.toList())
-                );
+    public List<Friend> getFriends(Long id){
+        Benutzer benutzer = benutzerService.getBenutzer(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id));
+        List<Friend> friends= new ArrayList<>();
+        for(Benutzer friendBenutzer : benutzer.getFriends()) {
+            friends.add(new Friend(friendBenutzer.getId(), friendBenutzer.getUsername()));
+        }
+        return friends;
+    }
+
+    public void addFriend(Long id1, Long id2){
+        Benutzer benutzer1 = benutzerService.getBenutzer(id1).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id1));
+        Benutzer benutzer2 = benutzerService.getBenutzer(id2).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + id2));
+        List<Benutzer> friend1 = benutzer1.getFriends();
+        List<Benutzer> friend2 = benutzer2.getFriends();
+        friend1.add(benutzer2);
+        friend2.add(benutzer1);
+        benutzerRepository.save(benutzer1);
+        benutzerRepository.save(benutzer2);
     }
 }
