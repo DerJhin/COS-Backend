@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,6 +91,30 @@ public class BenutzerService implements DefaultBenutzerService{
             items.remove(item);
             inventory.setItems(items);
         }
+        inventoryRepository.save(inventory);
+    }
+
+    public void removeFromInventory(List<Item> itemList, Benutzer benutzer){
+        Inventory inventory = benutzer.getInventory();
+        List<Item> items = inventory.getItems();
+        if(!new HashSet<>(items).containsAll(itemList)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "One or more items not found in inventory");
+        }
+        items.removeAll(itemList);
+        inventory.setItems(items);
+        inventoryRepository.save(inventory);
+    }
+
+    public void addToInventory(List<Item> itemList, Benutzer benutzer) {
+        Inventory inventory = benutzer.getInventory();
+        if(null == inventory.getItems()){
+            inventory.setItems(itemList);
+        }else{
+            List<Item> items = inventory.getItems();
+            items.addAll(itemList);
+            inventory.setItems(items);
+        }
+
         inventoryRepository.save(inventory);
     }
 

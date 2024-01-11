@@ -33,16 +33,13 @@ public class Benutzer {
     @JoinTable(name = "friendship",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id"))
+    @JsonBackReference
     private List<Benutzer> friends = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "inventory_id")
     @JsonBackReference
     private Inventory inventory;
-
-    // @Lob
-    // @Column(name = "profilePicture")
-    // private Blob profilePicture;
 
     @Column(name = "email")
     private String email;

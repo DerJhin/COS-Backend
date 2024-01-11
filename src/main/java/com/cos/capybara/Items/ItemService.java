@@ -14,8 +14,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
@@ -71,6 +73,13 @@ public class ItemService {
             item.setPatternNumber(patternNumber);
         }
         return item;
+    }
+
+    public List<Item> findAllById(List<Long> ids) {
+        return ids.stream()
+                .map(id -> itemRepository.getItemById(id)
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found with id: " + id)))
+                .collect(Collectors.toList());
     }
 
     private String getFloatString(double floatNumber){
