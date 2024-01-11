@@ -1,11 +1,16 @@
 package com.cos.capybara.Items;
 
+import com.cos.capybara.Benutzer.Benutzer;
+import com.cos.capybara.Benutzer.BenutzerService;
+import com.cos.capybara.Benutzer.Inventory.Inventory;
 import com.cos.capybara.Case.Case;
 import com.cos.capybara.Random.RandomService;
 import com.cos.capybara.RandomOrg.RandomOrgService;
 import com.cos.capybara.Skins.Skin;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,22 +26,25 @@ public class ItemService {
 
     public final ItemRepository itemRepository;
 
+    public final BenutzerService benutzerService;
+
     Random random = new Random();
 
     @Value("${api.use}")
     private boolean useApiToCreateNumbers;
 
-    public ItemService(RandomOrgService randomOrgService, RandomService randomService, ItemRepository itemRepository) {
+    public ItemService(RandomOrgService randomOrgService, RandomService randomService, ItemRepository itemRepository, BenutzerService benutzerService) {
         this.randomOrgService = randomOrgService;
         this.randomService = randomService;
         this.itemRepository = itemRepository;
+        this.benutzerService = benutzerService;
     }
 
     public Optional<Item> getItem(Long id) {
         return itemRepository.getItemById(id);
     }
 
-    public Item createAndSaveItem(Case weaponCase) {
+    public Item createAndSaveItem(Case weaponCase, long userId) {
         ArrayList<Double> doubleValue = getDouble();
         ArrayList<Integer> integerValue = getInteger();
         Item item = new Item(randomService.getRandomSkin(weaponCase, doubleValue.get(0)));
@@ -44,8 +52,8 @@ public class ItemService {
         item = applyStattrak(item, integerValue.get(0));
         item = applyPattern(item, integerValue.get(1));
         item.setDate(LocalDateTime.now());
-        itemRepository.save(item);
-        return item;
+        Item itemAfterSave = itemRepository.save(item);
+        return itemAfterSave;
     }
     public Item applyFloat(Item item, double floatNumber){
         item.setFloatValue(floatNumber);

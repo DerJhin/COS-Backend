@@ -91,8 +91,16 @@ INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name) VALUES
     (34, false, 'Oscillator', 2, 'UMP-45'),
     (35, false, 'Undercover Version', 6, 'Spitting Lama');
 
-INSERT INTO benutzer (username, email, balance) VALUES 
-('testuser', 'test@example.com', 100);
+INSERT INTO inventory (inventory_id) VALUES
+    (1),
+    (2),
+    (3);
+
+INSERT INTO benutzer (username, email, balance, inventory_id, password) VALUES
+('user1', 'user1@example.com', 100, 1, 1234),
+('user2', 'user2@example.com', 150, 2, 1234),
+('user3', 'user3@example.com', 200, 3, 1234);
+
 
 INSERT INTO cases (case_name) VALUES
 ('Revolution'),

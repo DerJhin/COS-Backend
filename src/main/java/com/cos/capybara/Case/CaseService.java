@@ -41,12 +41,12 @@ public class CaseService implements DefaultCaseService {
         return CaseRepository.findByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Case not found with name: " + name));
     }
 
-    public Item openCase(String caseName){
+    public Item openCase(String caseName, long userId){
         Case weaponCase = getCase(caseName);
         if (weaponCase.getCaseSkins().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Skins found for case: " + caseName);
         }
-        return itemService.createAndSaveItem(weaponCase);
+        return itemService.createAndSaveItem(weaponCase, userId);
     }
 
     public Optional<Collection<CaseSkin>> getSkinsOfCase(String caseName){

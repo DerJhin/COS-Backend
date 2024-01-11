@@ -1,12 +1,14 @@
 package com.cos.capybara.Benutzer;
 
 import com.cos.capybara.Benutzer.Inventory.Inventory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "benutzer")
@@ -22,9 +24,13 @@ public class Benutzer {
     @Column(name = "username")
     private String username;
 
-    @ManyToMany
-    @JoinColumn(name = "benutzer_id")
-    private ArrayList<Benutzer> friends;
+   /* @ManyToMany
+    @JoinTable(name = "friendship",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id"))
+    private ArrayList<Benutzer> friends = new ArrayList<>(new HashSet<>());
+
+*/
 
     @OneToOne
     @JoinColumn(name = "inventory_id")
@@ -40,13 +46,18 @@ public class Benutzer {
     @Column(name = "balance")
     private int balance;
 
-    public Benutzer(String username, String email, Blob profilePicture) {
+    @Column(name="password")
+    @JsonIgnore
+    private String password;
+
+    public Benutzer(String username, String password) {
         this.username = username;
         this.email = email;
         this.inventory = new Inventory();
-        this.friends = new ArrayList<>();
+        //this.friends = new ArrayList<>();
         this.balance = 0;
         // this.profilePicture = profilePicture;
+        this.password = password;
     }
 
     public Benutzer() {

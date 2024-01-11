@@ -19,6 +19,13 @@ public class RandomOrgService {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Generates a list of decimal fractions using the Random.org API.
+     * The method makes a POST request to the Random.org API endpoint and retrieves the random decimal fractions.
+     *
+     * @return ArrayList<Double> - A list of random decimal fractions.
+     * @throws RuntimeException if the API request fails or the response doesn't contain the required data.
+     */
     //TODO@JSE: Try binding these together so there are less requests to the API
     public ArrayList<Double> generateDecimalFractions() {
         String url = "https://api.random.org/json-rpc/4/invoke";
@@ -62,52 +69,6 @@ public class RandomOrgService {
                         randomData.add(((Number) data).doubleValue());
                     }
                     return randomData;
-                }
-            }
-        }
-
-        throw new RuntimeException("Failed to generate random integer");
-    }
-
-    public int generateIntegersForStattrak() {
-        String url = "https://api.random.org/json-rpc/4/invoke";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "application/json");
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("apiKey", "52ba3ac9-3c6e-42c0-911e-5fc4ff53d904");
-        params.put("n", 1);
-        params.put("min", 1);
-        params.put("max", 10);
-        params.put("replacement", true);
-
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("jsonrpc", "2.0");
-        requestBody.put("method", "generateIntegers");
-        requestBody.put("params", params);
-        requestBody.put("id", 42);
-
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
-
-        ResponseEntity<Map> responseEntity = restTemplate.exchange(
-                url,
-                HttpMethod.POST,
-                requestEntity,
-                Map.class
-        );
-
-        Map responseBody = responseEntity.getBody();
-
-        System.out.println("Response Body: " + responseBody);
-
-        if (responseBody != null && responseBody.containsKey("result")) {
-            Map result = (Map) responseBody.get("result");
-            if (result.containsKey("random")) {
-                Map random = (Map) result.get("random");
-                if (random.containsKey("data")) {
-                    System.out.println("Random Data: " + ((Number) ((ArrayList<?>) random.get("data")).get(0)).doubleValue());
-                    return ((Number) ((ArrayList<?>) random.get("data")).get(0)).intValue();
                 }
             }
         }

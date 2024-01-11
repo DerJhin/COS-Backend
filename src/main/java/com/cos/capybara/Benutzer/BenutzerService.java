@@ -1,12 +1,17 @@
 package com.cos.capybara.Benutzer;
 
 import com.cos.capybara.Benutzer.Inventory.Inventory;
+import com.cos.capybara.Benutzer.Inventory.InventoryRepository;
 import com.cos.capybara.Benutzer.Records.CreateBenutzer;
+import com.cos.capybara.Benutzer.Records.Login;
 import com.cos.capybara.Benutzer.Records.Profile;
+import com.cos.capybara.Items.Item;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +19,11 @@ public class BenutzerService implements DefaultBenutzerService{
 
     private final BenutzerRepository benutzerRepository;
 
-    public BenutzerService(BenutzerRepository benutzerRepository){
+    private final InventoryRepository inventoryRepository;
+
+    public BenutzerService(BenutzerRepository benutzerRepository, InventoryRepository inventoryRepository){
         this.benutzerRepository = benutzerRepository;
+        this.inventoryRepository = inventoryRepository;
     }
 
     public Optional<Benutzer> getBenutzer(Long id){
@@ -34,7 +42,31 @@ public class BenutzerService implements DefaultBenutzerService{
     }
 
     public Benutzer createBenutzer(CreateBenutzer createBenutzer){
-        Benutzer benutzer = new Benutzer(createBenutzer.username(), createBenutzer.email(), createBenutzer.profilePicture());
+        Benutzer benutzer = new Benutzer(createBenutzer.username(), createBenutzer.password());
         return benutzerRepository.save(benutzer);
+    }
+
+    public Benutzer login(Login loginInfo){
+        Benutzer benutzer = benutzerRepository.getBenutzerByUsername(loginInfo.username()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with username: " + loginInfo.username()));;
+        if(benutzer.getPassword().equals(loginInfo.password())){
+            return benutzer;
+        }else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password does not match");
+        }
+    }
+
+    public void addToInventory(Item item, long userId){
+        Benutzer benutzer = benutzerRepository.getBenutzerById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benutzer not found with id: " + userId));
+        Inventory inventory = benutzer.getInventory();
+        if(null == inventory.getItems()){
+            List<Item> items = new ArrayList<>();
+            items.add(item);
+            inventory.setItems(items);
+        }else{
+            List<Item> items= inventory.getItems();
+            items.add(item);
+            inventory.setItems(items);
+        }
+        inventoryRepository.save(inventory);
     }
 }

@@ -16,14 +16,32 @@ import java.util.List;
 @Service
 public class RandomService implements DefaultRandomService{
 
-    public Skin getRandomSkin(Case weaponCase, double randomDouble){
+    public final String CUMULATIVE_PROBABILITY_ERROR = "The probability of the case is not 100% or the target probability is not between 0 and 1";
+
+    /**
+     * Retrieves a random skin from the given weapon case based on target probability.
+     *
+     * @param weaponCase The weapon case to select a skin from.
+     * @param targetProbability The target probability used to determine which skin to select.
+     * @return The randomly selected skin from the weapon case.
+     * @throws ResponseStatusException if the cumulative probability of the case is not 100% or
+     *                                if the target probability is not between 0 and 1.
+     */
+    @Override
+    public Skin getRandomSkin(Case weaponCase, double targetProbability) {
         double cumulativeProbability = 0;
-        for (CaseSkin skin : weaponCase.getCaseSkins()) {
-            cumulativeProbability += skin.getProbability();
-            if (cumulativeProbability >= randomDouble) {
-                return skin.getSkin();
-            };
+        List<CaseSkin> caseSkins = weaponCase.getCaseSkins();
+        for (CaseSkin skinCase : caseSkins) {
+            cumulativeProbability += skinCase.getProbability();
+            if (cumulativeProbability >= targetProbability) {
+                return skinCase.getSkin();
+            }
+            ;
         }
-        throw new ResponseStatusException(HttpStatus.CONFLICT, "The probability of the case is not 100% or the random number is not between 0 and 1");
+        throw throwError(HttpStatus.CONFLICT, CUMULATIVE_PROBABILITY_ERROR);
+    }
+
+    private ResponseStatusException throwError(HttpStatus status, String message) {
+        return new ResponseStatusException(status, message);
     }
 }

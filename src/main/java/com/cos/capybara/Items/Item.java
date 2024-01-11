@@ -1,5 +1,6 @@
 package com.cos.capybara.Items;
 
+import com.cos.capybara.Benutzer.Inventory.Inventory;
 import com.cos.capybara.Skins.Skin;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,6 +37,10 @@ public class Item {
 
     @Column(name = "date")
     private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     public Item(Skin skin){
         this.skin = skin;

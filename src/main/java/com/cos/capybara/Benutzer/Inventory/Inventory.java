@@ -1,17 +1,12 @@
 package com.cos.capybara.Benutzer.Inventory;
 
 import com.cos.capybara.Items.Item;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "inventory")
@@ -25,6 +20,6 @@ public class Inventory {
     private Long id;
 
     @Column(name = "items")
-    @OneToMany
-    private ArrayList<Item> items;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Item> items;
 }
