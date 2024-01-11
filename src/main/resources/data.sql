@@ -98,9 +98,9 @@ INSERT INTO inventory (inventory_id) VALUES
     (3);
 
 INSERT INTO benutzer (username, email, balance, inventory_id, password) VALUES
-('user1', 'user1@example.com', 100, 1, 1234),
-('user2', 'user2@example.com', 150, 2, 1234),
-('user3', 'user3@example.com', 200, 3, 1234);
+('Joris', 'user1@example.com', 100, 1, 12345678),
+('Lucas', 'user2@example.com', 150, 2, 12345678),
+('Tim', 'user3@example.com', 200, 3, 12345678);
 
 
 INSERT INTO cases (case_name, image) VALUES

@@ -2,6 +2,7 @@ package com.cos.capybara.Benutzer;
 
 import com.cos.capybara.Benutzer.Inventory.Inventory;
 import com.cos.capybara.Benutzer.Inventory.InventoryRepository;
+import com.cos.capybara.Benutzer.Records.BenutzerSearch;
 import com.cos.capybara.Benutzer.Records.CreateBenutzer;
 import com.cos.capybara.Benutzer.Records.Login;
 import com.cos.capybara.Benutzer.Records.Profile;
@@ -13,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BenutzerService implements DefaultBenutzerService{
@@ -69,5 +71,13 @@ public class BenutzerService implements DefaultBenutzerService{
             inventory.setItems(items);
         }
         inventoryRepository.save(inventory);
+    }
+
+    public List<BenutzerSearch> searchBenutzer(String username){
+        return benutzerRepository.getBenutzersByUsernameStartingWith(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No benutzer found with username: " + username))
+                .stream()
+                .map(benutzer -> new BenutzerSearch(benutzer.getId(), benutzer.getUsername()))
+                .collect(Collectors.toList());
     }
 }
