@@ -53,7 +53,8 @@ INSERT INTO weapons (weapon_name) VALUES
     ('Bloodhound Gloves'),
     ('Hydra Gloves'),
     ('USP-S'),
-    ('Spitting Lama');
+    ('Spitting Lama'),
+    ('Capybara');
 
 INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name, image) VALUES
     (1, false, 'Temukau', 5, 'M4A4', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_cu_m4a4_temukau_light_large.a41eb80c70cbbee5d84e53b5cd1eaa10954c938d.png'),
@@ -90,7 +91,12 @@ INSERT INTO skins (skin_id, has_pattern, name, rarity, weapon_name, image) VALUE
     (32, false, 'Windblown', 2, 'Nova','https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_nova_sp_nova_wind_dispersal_light_large.9156d5a206e0e4b47f814bee9b6b54ac0a16b159.png'),
     (33, false, 'O.S.I.P.R.', 2, 'M249','https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m249_gs_m249_combine_light_large.6f8724ef896506ede0925a425da05969f19aafdc.png'),
     (34, false, 'Oscillator', 2, 'UMP-45','https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ump45_am_ump45_electrowave_light_large.98b6a5211b19bfeecb69d08cc7ebe6584cff353f.png'),
-    (35, false, 'Undercover Version', 6, 'Spitting Lama', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_snakeskin_white_light_large.f6a54c7a3cf91ecbe0a712bb2126bfe77f86825e.png');
+    (35, false, 'Undercover Version', 6, 'Spitting Lama', 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/slick_gloves_slick_snakeskin_white_light_large.f6a54c7a3cf91ecbe0a712bb2126bfe77f86825e.png'),
+    (36, false, 'Baby Capy', 6, 'Capybara', 'https://cdn.discordapp.com/attachments/1158855030808518658/1197515158952620113/csm_Wasserschwein-Nachwuchs_f374a8f22b.png?ex=65bb8be6&is=65a916e6&hm=93163306a46bb559949dad78801b03c1b049a042e8c6a7352fa2435e8eb05ed4&'),
+    (37, false, 'Painting Capy', 5, 'Capybara', 'https://cdn.discordapp.com/attachments/1158855030808518658/1197515900178419793/a0ddb0123e36ca4d5f2fc5ee0c26e6e2-capybara-hinter-dem-laub.png?ex=65bb8c97&is=65a91797&hm=b39ee0e520077505d11a764ac7fbebc09bbdc69367d50deb0b30a3781c61bb2c&'),
+    (38, false, '3D Capy', 5, 'Capybara', 'https://cdn.discordapp.com/attachments/1158855030808518658/1197515840543789127/capybara_t_preview.png?ex=65bb8c89&is=65a91789&hm=238da34a1e46de7616b4f90a0c9da82c83099e4057bb72c6de400032d97f92fa&'),
+    (39, false, 'Normal Capy', 2, 'Capybara', 'https://cdn.discordapp.com/attachments/1158855030808518658/1197515795916410970/360_F_552821106_RVVWBchtNowOCZIEZHqx04BGzz1Jz0KG.png?ex=65bb8c7e&is=65a9177e&hm=9a823f5fdd891cb1e7fa5ed1c25dc8fad99bd5353a52124a1fe021f1a00cf861&'),
+    (40, false, 'Plushy Capy', 4, 'Capybara', 'https://cdn.discordapp.com/attachments/1158855030808518658/1197517358445629440/ScreenShot2023-02-17at10.png?ex=65bb8df3&is=65a918f3&hm=a53b0c584246c2caea7560f82c132b29c44b79ac6109d82544ed5fec7b9e5c66&');
 
 INSERT INTO inventory (inventory_id) VALUES
     (1),
@@ -105,6 +111,7 @@ INSERT INTO benutzer (username, email, balance, inventory_id, password, last_log
 
 INSERT INTO cases (case_name, image) VALUES
 ('Revolution', 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFQynaHMJT9B74-ywtjYxfOmMe_Vx28AucQj3brAoYrz3Fay_kY4MG_wdYeLMlhpLMaM-1U/256fx256f'),
+('Capybara', 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFQynaHMJT9B74-ywtjYxfOmMe_Vx28AucQj3brAoYrz3Fay_kY4MG_wdYeLMlhpLMaM-1U/256fx256f'),
 ('Snakebite', 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFU4naLOJzgUuYqyzIaIxa6jMOLXxGkHvcMjibmU99Sg3Qaw-hA_ZWrzLISLMlhpgJJUhGE/256fx256f');
 
 -- Füge "Revolution" case in die Tabelle "cases" ein
@@ -127,6 +134,13 @@ INSERT INTO case_skins (probability, skin_id, case_name) VALUES
 (0.11417142857142858, 16, 'Revolution'),
 (0.11417142857142858, 17, 'Revolution'),
 (0.0025, 35, 'Revolution');
+
+INSERT INTO case_skins (probability, skin_id, case_name) VALUES
+(0.06, 37, 'Capybara'),
+(0.06, 38, 'Capybara'),
+(0.35, 40, 'Capybara'),
+(0.50, 39, 'Capybara'),
+(0.03, 36, 'Capybara');
 
 -- Füge "Snakebite" case in die Tabelle "cases" ein
 INSERT INTO case_skins (probability, skin_id, case_name) VALUES
